@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        
         Home()
     }
 }
@@ -20,6 +21,10 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct Home: View {
+    
+    @State var dark = false
+    @State var show = false
+    
     var body: some View {
         ZStack(alignment: .leading){
             GeometryReader{_ in
@@ -27,28 +32,37 @@ struct Home: View {
                     Text("Dark Mode Menu")
                 }
             }
-            Menu()
+            Menu(dark: self.$dark, show: self.$show)
         }
     }
 }
 
 
 struct  Menu: View {
+    
+    @Binding var dark: Bool
+    @Binding var show: Bool
+    
     var body: some View {
+        
         VStack{
+            
             HStack{
                 Button(action: {
                     
                 }) {
+                    
                     Image("back")
                         .resizable()
-                        .frame(width:12, height: 20)
+                        .frame(width:20, height: 20)
                 }
+                
                 Spacer()
                 
                 Button(action: {
                     
                 }) {
+                    
                     Image(systemName: "square.and.pencil")
                         .font(.title)
                 }
@@ -56,23 +70,29 @@ struct  Menu: View {
             .padding(.top)
             .padding(.bottom, 25)
             
-            Image("pic")
+            Image("BioLab")
                 .resizable()
-                .frame(width: 80, height: 80)
-                .clipShape(Circle())
+                .frame(width: 160, height: 80)
             
             VStack(spacing: 12){
                 
-                Text("Christian")
+                Text("Water Testing App")
                 
-                Text("Developer")
+                Text("© 2020")
                     .font(.caption)
             }
             .padding(.top, 25)
             
             Spacer()
         }
-        .frame(width: UIScreen.main.bounds.width / 1.5)
+        .foregroundColor(.primary)
         .padding(.horizontal, 20)
+        .frame(width: UIScreen.main.bounds.width / 1.5)
+        .background((
+            self.dark ? Color.black
+                      : Color.white
+        ).edgesIgnoringSafeArea(.all))
+        .overlay(Rectangle().stroke(Color.primary, lineWidth: 2).shadow(radius:3 ).edgesIgnoringSafeArea(.all)
+        )
     }
 }
