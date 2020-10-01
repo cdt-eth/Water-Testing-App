@@ -72,7 +72,7 @@ struct  Menu: View {
             
             Image("BioLab")
                 .resizable()
-                .frame(width: 160, height: 80)
+                .frame(width: 140, height: 60)
             
             VStack(spacing: 12){
                 
@@ -87,22 +87,166 @@ struct  Menu: View {
                 
                 Image(systemName: "moon.fill")
                     .font(.title)
-                
+
                 Text("Dark Mode")
+
+                // Dark Mode
+//                Button(action: {
+//
+//                }) {
+//
+//                    HStack(spacing: 22) {
+//
+//                        Image("dark_mode")
+//                            .resizable()
+//                            .frame(width:40, height:40)
+//
+//                        Text("Dark Mode")
+//
+//                        Spacer()
+//                    }
+//                }
+//                .padding(.top, 25)
                 
                 Spacer()
                 
                 Button(action: {
                     self.dark.toggle()
+                    
+                    UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = self.dark ? .dark : .light
                 }) {
                    
-                    Image("toggle")
+                    Image("togglebutton")
                         .resizable()
-                        .frame(width:80, height:40)
+                        .frame(width:50, height:30)
                         .rotationEffect(.init(degrees: self.dark ? 180 : 0))
                         
                 }
-            }.padding(.top, 25)
+            }
+            .padding(.top, 25)
+            
+            Group {
+                
+                // MY CUSTOMERS
+                Button(action: {
+                   
+                }) {
+                    
+                    HStack(spacing: 22) {
+                        
+                        Image("my_customers")
+                            .resizable()
+                            .frame(width:40, height:40)
+                        
+                        Text("My Customers")
+                        
+                        Spacer()
+                    }
+                }
+                .padding(.top, 25)
+                
+                
+                // WATER TEST
+                Button(action: {
+                   
+                }) {
+                    
+                    HStack(spacing: 22) {
+                        
+                        Image("water_test")
+                            .resizable()
+                            .frame(width:40, height:40)
+                        
+                        Text("Water Test")
+                        
+                        Spacer()
+                    }
+                }
+                .padding(.top, 25)
+                
+                
+                Divider()
+                    .padding(.top, 25)
+                
+                
+                // VOLUME CALCULATOR
+                Button(action: {
+                   
+                }) {
+                    
+                    HStack(spacing: 22) {
+                        
+                        Image("volume_calculator")
+                            .resizable()
+                            .frame(width:40, height:40)
+                        
+                        Text("Volume Calculator")
+                        
+                        Spacer()
+                    }
+                }
+                .padding(.top, 25)
+                
+                
+                
+                // CONTACT US
+                Button(action: {
+                   
+                }) {
+                    
+                    HStack(spacing: 22) {
+                        
+                        Image("contact_us")
+                            .resizable()
+                            .frame(width:40, height:40)
+                        
+                        Text("Contact Us")
+                        
+                        Spacer()
+                    }
+                }
+                .padding(.top, 25)
+                
+                
+                
+                // WEBSITE
+                Button(action: {
+                   
+                }) {
+                    
+                    HStack(spacing: 22) {
+                        
+                        Image("website")
+                            .resizable()
+                            .frame(width:40, height:40)
+                        
+                        Text("Website")
+                        
+                        Spacer()
+                    }
+                }
+                .padding(.top, 25)
+                
+                
+                // LOGOUT
+                Button(action: {
+                   
+                }) {
+                    
+                    HStack(spacing: 22) {
+                        
+                        Image("logout")
+                            .resizable()
+                            .frame(width:40, height:40)
+                        
+                        Text("Logout")
+                        
+                        Spacer()
+                    }
+                }
+                .padding(.top, 25)
+                
+            }
             
             Spacer()
         }
