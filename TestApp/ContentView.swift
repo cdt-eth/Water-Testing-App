@@ -83,6 +83,27 @@ struct  Menu: View {
             }
             .padding(.top, 25)
             
+            HStack(spacing: 22){
+                
+                Image(systemName: "moon.fill")
+                    .font(.title)
+                
+                Text("Dark Mode")
+                
+                Spacer()
+                
+                Button(action: {
+                    self.dark.toggle()
+                }) {
+                   
+                    Image("toggle")
+                        .resizable()
+                        .frame(width:80, height:40)
+                        .rotationEffect(.init(degrees: self.dark ? 180 : 0))
+                        
+                }
+            }.padding(.top, 25)
+            
             Spacer()
         }
         .foregroundColor(.primary)
@@ -92,7 +113,9 @@ struct  Menu: View {
             self.dark ? Color.black
                       : Color.white
         ).edgesIgnoringSafeArea(.all))
-        .overlay(Rectangle().stroke(Color.primary, lineWidth: 2).shadow(radius:3 ).edgesIgnoringSafeArea(.all)
+        .overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2)
+                            .shadow(radius:3 )
+                            .edgesIgnoringSafeArea(.all)
         )
     }
 }
