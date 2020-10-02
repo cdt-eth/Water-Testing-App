@@ -41,8 +41,17 @@ struct Home: View {
                                     .font(.title)
                             }
                             Spacer()
+//                        }
+//                        Text("Home")
+                        Image("BioLab")
+                            .resizable()
+                            .frame(width: 140, height: 60)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "person")
+                            .font(.title)
                         }
-                        Text("Home")
                     }
                     .padding()
                     .foregroundColor(.primary)
@@ -51,7 +60,41 @@ struct Home: View {
                     
                     Spacer()
                     
-                    Text("Dark Mode Menu")
+                    Image("home-pool")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.bottom, 35)
+                    
+
+                    
+                    Text("Test your pool water for immediate and accurate product and dosage recommendations.")
+                        .multilineTextAlignment(.center)
+                        .frame(width: 350)
+
+                    Spacer()
+                    
+                    Button(action: {
+                        
+                    }) {
+                        HStack {
+                            Image(systemName: "eyedropper.halffull")
+                                .font(.title)
+                                .foregroundColor(.white)
+//                                .padding()
+                            Text("TEST POOL WATER NOW")
+                                .font(.callout)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding()
+                            }
+                        .padding(.horizontal, 20)
+                        .background(Color("DarkBlue"))
+                        .cornerRadius(10)
+                        .frame(maxWidth: .infinity)
+//                        .padding(.top, 50)
+                        
+                    }
+                    
                     
                     Spacer()
                 }
@@ -85,9 +128,8 @@ struct  Menu: View {
                         show.toggle()
                     }
                 }) {
-                    Image("back")
-                        .resizable()
-                        .frame(width:20, height: 20)
+                    Image(systemName: "chevron.left")
+                        .font(.title)
                 }
                 
                 Spacer()
@@ -95,7 +137,6 @@ struct  Menu: View {
                 Button(action: {
                     
                 }) {
-                    
                     Image(systemName: "eyedropper.halffull")
                         .font(.title)
                 }
@@ -103,7 +144,7 @@ struct  Menu: View {
             .padding(.top)
             .padding(.bottom, 25)
             
-
+            
             Image("BioLab")
                 .resizable()
                 .frame(width: 140, height: 60)
@@ -112,7 +153,7 @@ struct  Menu: View {
                 Text("Water Testing App")
                 Text("© 2020").font(.caption)
             }.padding(.top, 15)
-       
+            
             Divider()
                 .padding()
             
