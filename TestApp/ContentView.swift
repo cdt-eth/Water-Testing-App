@@ -30,18 +30,15 @@ struct Home: View {
         ZStack(alignment: .leading){
             GeometryReader{_ in
                 VStack{
-                    
                     ZStack{
-                        
                         HStack{
                             Button(action: {
                                 withAnimation(.default){
                                     show.toggle()
                                 }
                             }) {
-                                Image("menu")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
+                                Image(systemName: "line.horizontal.3")
+                                    .font(.title)
                             }
                             Spacer()
                         }
@@ -50,7 +47,7 @@ struct Home: View {
                     .padding()
                     .foregroundColor(.primary)
                     .overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1)
-                                .shadow(radius:3).edgesIgnoringSafeArea(.all))
+                                .shadow(radius:1).edgesIgnoringSafeArea(.all))
                     
                     Spacer()
                     
@@ -71,6 +68,7 @@ struct Home: View {
         }
     }
 }
+
 
 
 struct  Menu: View {
@@ -113,7 +111,7 @@ struct  Menu: View {
             VStack(spacing: 12){
                 Text("Water Testing App")
                 Text("© 2020").font(.caption)
-            }.padding(.top, 25)
+            }.padding(.top, 15)
        
             Divider()
                 .padding()
