@@ -11,6 +11,7 @@ struct ContentView: View {
     var body: some View {
         
         Home()
+        
     }
 }
 
@@ -29,10 +30,44 @@ struct Home: View {
         ZStack(alignment: .leading){
             GeometryReader{_ in
                 VStack{
+                    
+                    ZStack{
+                        
+                        HStack{
+                            Button(action: {
+                                withAnimation(.default){
+                                    show.toggle()
+                                }
+                            }) {
+                                Image("menu")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                            }
+                            Spacer()
+                        }
+                        Text("Home")
+                    }
+                    .padding()
+                    .foregroundColor(.primary)
+                    .overlay(Rectangle().stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                                .shadow(radius:3).edgesIgnoringSafeArea(.all))
+                    
+                    Spacer()
+                    
                     Text("Dark Mode Menu")
+                    
+                    Spacer()
                 }
             }
-            Menu(dark: self.$dark, show: self.$show)
+            
+            HStack {
+                Menu(dark: $dark, show: $show)
+                    .preferredColorScheme(dark ? .dark : .light)
+                    .offset(x: show ? 0 : -UIScreen.main.bounds.width / 1.5)
+                
+                Spacer(minLength: 0)
+            }
+            .background(Color.primary.opacity(show ? (dark ? 0.05 : 0.2) : 0).edgesIgnoringSafeArea(.all))
         }
     }
 }
@@ -50,6 +85,9 @@ struct  Menu: View {
             HStack{
                 Button(action: {
                     
+                    withAnimation(.default){
+                        show.toggle()
+                    }
                 }) {
                     
                     Image("back")
@@ -87,26 +125,8 @@ struct  Menu: View {
                 
                 Image(systemName: "moon.fill")
                     .font(.title)
-
+                
                 Text("Dark Mode")
-
-                // Dark Mode
-//                Button(action: {
-//
-//                }) {
-//
-//                    HStack(spacing: 22) {
-//
-//                        Image("dark_mode")
-//                            .resizable()
-//                            .frame(width:40, height:40)
-//
-//                        Text("Dark Mode")
-//
-//                        Spacer()
-//                    }
-//                }
-//                .padding(.top, 25)
                 
                 Spacer()
                 
@@ -115,12 +135,12 @@ struct  Menu: View {
                     
                     UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = self.dark ? .dark : .light
                 }) {
-                   
+                    
                     Image("togglebutton")
                         .resizable()
                         .frame(width:50, height:30)
                         .rotationEffect(.init(degrees: self.dark ? 180 : 0))
-                        
+                    
                 }
             }
             .padding(.top, 25)
@@ -129,7 +149,7 @@ struct  Menu: View {
                 
                 // MY CUSTOMERS
                 Button(action: {
-                   
+                    
                 }) {
                     
                     HStack(spacing: 22) {
@@ -148,7 +168,7 @@ struct  Menu: View {
                 
                 // WATER TEST
                 Button(action: {
-                   
+                    
                 }) {
                     
                     HStack(spacing: 22) {
@@ -171,7 +191,7 @@ struct  Menu: View {
                 
                 // VOLUME CALCULATOR
                 Button(action: {
-                   
+                    
                 }) {
                     
                     HStack(spacing: 22) {
@@ -191,7 +211,7 @@ struct  Menu: View {
                 
                 // CONTACT US
                 Button(action: {
-                   
+                    
                 }) {
                     
                     HStack(spacing: 22) {
@@ -211,7 +231,7 @@ struct  Menu: View {
                 
                 // WEBSITE
                 Button(action: {
-                   
+                    
                 }) {
                     
                     HStack(spacing: 22) {
@@ -230,7 +250,7 @@ struct  Menu: View {
                 
                 // LOGOUT
                 Button(action: {
-                   
+                    
                 }) {
                     
                     HStack(spacing: 22) {
@@ -255,11 +275,11 @@ struct  Menu: View {
         .frame(width: UIScreen.main.bounds.width / 1.5)
         .background((
             self.dark ? Color.black
-                      : Color.white
+                : Color.white
         ).edgesIgnoringSafeArea(.all))
         .overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2)
-                            .shadow(radius:3 )
-                            .edgesIgnoringSafeArea(.all)
+                    .shadow(radius:3 )
+                    .edgesIgnoringSafeArea(.all)
         )
     }
 }
