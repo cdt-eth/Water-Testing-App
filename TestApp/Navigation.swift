@@ -36,8 +36,6 @@ struct Navigation: View {
             }
             .padding(.top, 25)
                         
-//            Divider()
-//                .padding(.top, 25)
             
             // VOLUME CALCULATOR
             Button(action: {

@@ -41,16 +41,15 @@ struct Home: View {
                                     .font(.title)
                             }
                             Spacer()
-//                        }
-//                        Text("Home")
-                        Image("BioLab")
-                            .resizable()
-                            .frame(width: 140, height: 60)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "person")
-                            .font(.title)
+                            
+                            Image("BioLab")
+                                .resizable()
+                                .frame(width: 140, height: 60)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "person")
+                                .font(.title)
                         }
                     }
                     .padding()
@@ -65,12 +64,12 @@ struct Home: View {
                         .aspectRatio(contentMode: .fit)
                         .padding(.bottom, 35)
                     
-
+                    
                     
                     Text("Test your pool water for immediate and accurate product and dosage recommendations.")
                         .multilineTextAlignment(.center)
                         .frame(width: 350)
-
+                    
                     Spacer()
                     
                     Button(action: {
@@ -80,18 +79,18 @@ struct Home: View {
                             Image(systemName: "eyedropper.halffull")
                                 .font(.title)
                                 .foregroundColor(.white)
-//                                .padding()
+                            //                                .padding()
                             Text("TEST POOL WATER NOW")
                                 .font(.callout)
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
                                 .padding()
-                            }
+                        }
                         .padding(.horizontal, 20)
                         .background(Color("DarkBlue"))
                         .cornerRadius(10)
                         .frame(maxWidth: .infinity)
-//                        .padding(.top, 50)
+                        //                        .padding(.top, 50)
                         
                     }
                     
