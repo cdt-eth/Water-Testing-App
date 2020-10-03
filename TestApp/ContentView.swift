@@ -130,15 +130,15 @@ struct  Menu: View {
                     Image(systemName: "chevron.left")
                         .font(.title)
                 }
-                
+
                 Spacer()
-                
-                Button(action: {
-                    
-                }) {
-                    Image(systemName: "eyedropper.halffull")
-                        .font(.title)
-                }
+//
+//                Button(action: {
+//
+//                }) {
+//                    Image(systemName: "eyedropper.halffull")
+//                        .font(.title)
+//                }
             }
             .padding(.top)
             .padding(.bottom, 25)
