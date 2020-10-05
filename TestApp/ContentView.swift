@@ -17,52 +17,51 @@ struct ResultView: View {
 
 
 struct ContentView: View {
-    @State private  var isShowingDetailView = false
-    
+    @State private  var selection: String? = nil
+
     var body: some View {
         
-        NavigationView{
-            VStack(spacing: 30){
-                NavigationLink(destination: Text("Second View"), isActive: $isShowingDetailView) { EmptyView() }
-//                    Text("Choose Heads")
+        Home()
+
+//        NavigationView{
+//            VStack(spacing: 30){
+//
+//                NavigationLink(destination: Text("Customers List"), tag: "My Customers", selection: $selection) { EmptyView() }
+//                NavigationLink(destination: Text("Scan test strip"), tag: "Water Test", selection: $selection) {
+//                    HStack {
+//                    Image(systemName: "eyedropper.halffull")
+//                        .font(.title)
+//                        .foregroundColor(.white)
+//                    //                                .padding()
+//                    Text("TEST POOL WATER NOW")
+//                        .font(.callout)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .padding()
 //                }
-                
-                // USE THIS, but how do i set destination as a specific page?
-                Button("Tap to show detial"){
-                    isShowingDetailView = true
-                }
-                    
-                    
-                    //                Text("Flip a coin. Do you want heads or tails?")
-                    //                NavigationLink(destination: ResultView(choice: "Heads")) {
-                    //                    Text("Choose Heads")
-                    //                }
-                    //                NavigationLink(destination: ResultView(choice: "Tails")) {
-                    //                    Text("Choose Tails")
-                    //                }
-                }
-                .navigationTitle("Navigation")
-                
-                //            NavigationLink(destination: Text("Made it!")) {
-                //                Text("First Link")
-                //                Image("BioLab")
-                //                    .renderingMode(.original)
-                //                    .resizable()
-                //                    .frame(width: 140, height: 60)
-                //            }
-                //            Text("Home")
-                //                .navigationTitle("Navigation")
-                
-            }
-        }
+//                .padding(.horizontal, 20)
+//                .background(Color("DarkBlue"))
+//                .cornerRadius(10)
+//                .frame(maxWidth: .infinity)}
+////
+////                Button("View My Customers"){
+////                    selection = "My Customers"
+////                }
+//                Button("Test your pool water"){
+//                    selection = "Water Test"
+//                }
+////                .navigationTitle("Navigation")
+//            }
+//        }
     }
+}
     
-    //struct ContentView: View {
-    //    var body: some View {
-    //
-    //        Home()
-    //    }
-    //}
+//    struct ContentView: View {
+//        var body: some View {
+//
+//            Home()
+//        }
+//    }
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
@@ -120,9 +119,10 @@ struct ContentView: View {
                             .frame(width: 350)
                         
                         Spacer()
-                        
+                    
                         Button(action: {
-                            
+                           
+                            print("hi")
                         }) {
                             HStack {
                                 Image(systemName: "eyedropper.halffull")
