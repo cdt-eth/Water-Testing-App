@@ -148,10 +148,10 @@ struct  Menu: View {
                 .resizable()
                 .frame(width: 140, height: 60)
             
-            VStack(spacing: 12){
-                Text("Water Testing App")
-                Text("© 2020").font(.caption)
-            }.padding(.top, 15)
+//            VStack(spacing: 12){
+//                Text("Water Testing App")
+//                Text("© 2020").font(.caption)
+//            }.padding(.top, 15)
             
             Divider()
                 .padding()
