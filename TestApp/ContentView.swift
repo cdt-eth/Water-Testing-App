@@ -7,62 +7,61 @@
 
 import SwiftUI
 
-struct ResultView: View {
-    var choice: String
-    
-    var body: some View {
-        Text("you chose \(choice)")
-    }
-}
+//struct ResultView: View {
+//    var choice: String
+//
+//    var body: some View {
+//        Text("you chose \(choice)")
+//    }
+//}
 
 
-struct ContentView: View {
-    @State private  var isShowingDetailView = false
-    
-    var body: some View {
-        
-        NavigationView{
-            VStack(spacing: 30){
-                NavigationLink(destination: Text("Second View"), isActive: $isShowingDetailView) { EmptyView() }
-//                    Text("Choose Heads")
+//struct ContentView: View {
+//    @State private  var selection: String? = nil
+//
+//    var body: some View {
+//
+//        Home()
+
+//        NavigationView{
+//            VStack(spacing: 30){
+//
+//                NavigationLink(destination: Text("Customers List"), tag: "My Customers", selection: $selection) { EmptyView() }
+//                NavigationLink(destination: Text("Scan test strip"), tag: "Water Test", selection: $selection) {
+//                    HStack {
+//                    Image(systemName: "eyedropper.halffull")
+//                        .font(.title)
+//                        .foregroundColor(.white)
+//                    //                                .padding()
+//                    Text("TEST POOL WATER NOW")
+//                        .font(.callout)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .padding()
 //                }
-                
-                // USE THIS, but how do i set destination as a specific page?
-                Button("Tap to show detial"){
-                    isShowingDetailView = true
-                }
-                    
-                    
-                    //                Text("Flip a coin. Do you want heads or tails?")
-                    //                NavigationLink(destination: ResultView(choice: "Heads")) {
-                    //                    Text("Choose Heads")
-                    //                }
-                    //                NavigationLink(destination: ResultView(choice: "Tails")) {
-                    //                    Text("Choose Tails")
-                    //                }
-                }
-                .navigationTitle("Navigation")
-                
-                //            NavigationLink(destination: Text("Made it!")) {
-                //                Text("First Link")
-                //                Image("BioLab")
-                //                    .renderingMode(.original)
-                //                    .resizable()
-                //                    .frame(width: 140, height: 60)
-                //            }
-                //            Text("Home")
-                //                .navigationTitle("Navigation")
-                
-            }
+//                .padding(.horizontal, 20)
+//                .background(Color("DarkBlue"))
+//                .cornerRadius(10)
+//                .frame(maxWidth: .infinity)}
+////
+////                Button("View My Customers"){
+////                    selection = "My Customers"
+////                }
+//                Button("Test your pool water"){
+//                    selection = "Water Test"
+//                }
+////                .navigationTitle("Navigation")
+//            }
+//        }
+//    }
+//}
+    
+    struct ContentView: View {
+        var body: some View {
+
+            Home()
         }
     }
-    
-    //struct ContentView: View {
-    //    var body: some View {
-    //
-    //        Home()
-    //    }
-    //}
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
@@ -120,9 +119,10 @@ struct ContentView: View {
                             .frame(width: 350)
                         
                         Spacer()
-                        
+                    
                         Button(action: {
-                            
+                           
+                            print("hi")
                         }) {
                             HStack {
                                 Image(systemName: "eyedropper.halffull")
@@ -179,7 +179,7 @@ struct ContentView: View {
                         Image(systemName: "chevron.left")
                             .font(.title)
                     }
-                    
+
                     Spacer()
                     //
                     //                Button(action: {
@@ -191,22 +191,22 @@ struct ContentView: View {
                 }
                 .padding(.top)
                 .padding(.bottom, 25)
-                
-                
+
+
                 Image("BioLab")
                     .resizable()
                     .frame(width: 140, height: 60)
-                
+
                 //            VStack(spacing: 12){
                 //                Text("Water Testing App")
                 //                Text("© 2020").font(.caption)
                 //            }.padding(.top, 15)
-                
+
                 Divider()
                     .padding()
-                
+
                 Navigation()
-                
+
                 Spacer()
             }
             .foregroundColor(.primary)
