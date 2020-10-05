@@ -7,13 +7,50 @@
 
 import SwiftUI
 
+struct ResultView: View {
+    var choice: String
+    
+    var body: some View {
+        Text("you chose \(choice)")
+    }
+}
+
+
 struct ContentView: View {
     var body: some View {
         
-        Home()
-        
+        NavigationView{
+            VStack(spacing: 30){
+                Text("Flip a coin. Do you want heads or tails?")
+                NavigationLink(destination: ResultView(choice: "Heads")) {
+                    Text("Choose Heads")
+                }
+                NavigationLink(destination: ResultView(choice: "Tails")) {
+                    Text("Choose Tails")
+                }
+            }
+            .navigationTitle("Navigation")
+            
+//            NavigationLink(destination: Text("Made it!")) {
+//                Text("First Link")
+//                Image("BioLab")
+//                    .renderingMode(.original)
+//                    .resizable()
+//                    .frame(width: 140, height: 60)
+//            }
+//            Text("Home")
+//                .navigationTitle("Navigation")
+            
+        }
     }
 }
+
+//struct ContentView: View {
+//    var body: some View {
+//
+//        Home()
+//    }
+//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
