@@ -122,7 +122,7 @@ import SwiftUI
                     
                         Button(action: {
                            
-                            print("hi")
+//                            print("hi")
                         }) {
                             HStack {
                                 Image(systemName: "eyedropper.halffull")
