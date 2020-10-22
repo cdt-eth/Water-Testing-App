@@ -9,7 +9,11 @@ import SwiftUI
 
 struct WaterTestView: View {
     var body: some View {
+<<<<<<< HEAD
         Text("This is the Water Test View")
+=======
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+>>>>>>> 32a64bcd0bb4b2c11d477c3d8d80fe80e638e585
     }
 }
 

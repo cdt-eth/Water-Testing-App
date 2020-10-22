@@ -76,7 +76,11 @@ struct Navigation: View {
 
                         // LOGOUT
                         Button(action: {
+<<<<<<< HEAD
 //                            WaterTestView()
+=======
+                            WaterTestView()
+>>>>>>> 32a64bcd0bb4b2c11d477c3d8d80fe80e638e585
                         }) {
                             HStack(spacing: 22) {
                                 Text("Logout")
