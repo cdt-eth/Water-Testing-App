@@ -39,19 +39,19 @@ struct Navigation: View {
                     }
                 }.padding(.top, 25)
                 
-//                NavigationLink(destination: WaterTestView()) {
-//                    HStack(spacing: 22) {
-//                        Text("Website")
-//                        Spacer()
-//                    }
-//                }.padding(.top, 25)
+                //                NavigationLink(destination: WaterTestView()) {
+                //                    HStack(spacing: 22) {
+                //                        Text("Website")
+                //                        Spacer()
+                //                    }
+                //                }.padding(.top, 25)
                 
                 HStack(spacing: 22) {
                     Link("Website", destination: URL(string: "https://www.proseriespool.com")!)
                     Spacer()
                 }.padding(.top, 25)
                 
-
+                
                 NavigationLink(destination: WaterTestView()) {
                     HStack(spacing: 22) {
                         Text("Logout")
@@ -59,7 +59,12 @@ struct Navigation: View {
                     }
                 }.padding(.top, 25)
                 
-            }
+                //                Spacer()
+                
+            }.navigationBarTitle("")
+            .navigationBarHidden(true)
+            
+            
             //                    Group {
             ////             MY CUSTOMERS
             //                        Button(action: {
@@ -136,7 +141,7 @@ struct Navigation: View {
             //                        .padding(.top, 25)
             //
             //        }
-        }
+        }.padding(.bottom,300)
     }
 }
 
