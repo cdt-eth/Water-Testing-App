@@ -43,6 +43,7 @@ struct WaterTestView: View {
     var maxST = 1000.0
     
     var body: some View {
+
         
         VStack(spacing: 0) {
             Text("Total Hardness").font(.footnote).bold()
@@ -155,6 +156,11 @@ struct WaterTestView: View {
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }
         .navigationBarTitle(Text("Pool Water Test"), displayMode:.inline)
+
+        Text("This is the Water Test View")
+
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
     }
 }
 
