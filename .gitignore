@@ -7,6 +7,16 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+
+Water Testing.xcodeproj
+Water Testing.xcodeproj/*
+/Water Testing.xcodeproj
+/Water Testing.xcodeproj/*
+Water Testing.xcodeproj/project.xcworkspace/xcuserdata/ChristianDavidPhoto.xcuserdatad/UserInterfaceState.xcuserstate
+*/Water Testing.xcodeproj/*
+
+
+
 ## User settings
 xcuserdata/
 
