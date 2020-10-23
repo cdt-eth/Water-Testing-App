@@ -43,11 +43,14 @@ struct WaterTestView: View {
     var maxST = 1000.0
     
     var body: some View {
-
         
         VStack(spacing: 0) {
             Text("Total Hardness").font(.footnote).bold()
-            Text("\(Int(valueTH))").font(.title).bold()
+            if valueTH < 40 || valueTH > 750 {
+                Text("\(Int(valueTH))").font(.title).bold().foregroundColor(Color.red)
+            } else  {
+                Text("\(Int(valueTH))").font(.title).bold()
+            }
             
             HStack {
                 Text("\(Int(minTH))")
@@ -60,20 +63,33 @@ struct WaterTestView: View {
 
         VStack(spacing: 0) {
             Text("Total Chlorine").font(.footnote).bold()
-            Text("\(Int(valueTC))").font(.title).bold()
+            
+            if valueTC < 4 || valueTC > 15 {
+                Text("\(Int(valueTC))").font(.title).bold().foregroundColor(Color.red)
+            } else  {
+                Text("\(Int(valueTC))").font(.title).bold()
+            }
             
             HStack {
                 Text("\(Int(minTC))")
-                
+            
                 Slider(value: $valueTC, in: minTC...maxTC)
+                
+//                Image(systemName:"line.horizontal.3.circle.fill").resizable()
                 
                 Text("\(Int(maxTC))")
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }
         
+        
         VStack(spacing: 0) {
             Text("Free Chlorine").font(.footnote).bold()
-            Text("\(Double(valueFC), specifier: "%.1f")").font(.title).bold()
+//            Text("\(Double(valueFC), specifier: "%.1f")").font(.title).bold()
+            if valueFC < 4 || valueFC > 15 {
+                Text("\(Double(valueFC), specifier: "%.1f")").font(.title).bold().foregroundColor(Color.red)
+            } else  {
+                Text("\(Double(valueFC), specifier: "%.1f")").font(.title).bold()
+            }
             
             HStack {
                 Text("\(Int(minFC))")
@@ -86,7 +102,12 @@ struct WaterTestView: View {
 
         VStack(spacing: 0) {
             Text("pH").font(.footnote).bold()
-            Text("\(Double(valuePH), specifier: "%.1f")").font(.title).bold()
+//            Text("\(Double(valuePH), specifier: "%.1f")").font(.title).bold()
+            if valuePH < 7.3 || valuePH > 8.0 {
+                Text("\(Double(valuePH), specifier: "%.1f")").font(.title).bold().foregroundColor(Color.red)
+            } else  {
+                Text("\(Double(valuePH), specifier: "%.1f")").font(.title).bold()
+            }
             
             HStack {
                 Text("\(Int(minPH))")
@@ -100,7 +121,12 @@ struct WaterTestView: View {
         VStack(spacing: 0) {
 
             Text("Total Alkalinity").font(.footnote).bold()
-            Text("\(Int(valueTA))").font(.title).bold()
+//            Text("\(Int(valueTA))").font(.title).bold()
+            if valueTA < 40 || valueTA > 750 {
+                Text("\(Int(valueTA))").font(.title).bold().foregroundColor(Color.red)
+            } else  {
+                Text("\(Int(valueTA))").font(.title).bold()
+            }
             
             HStack {
                 Text("\(Int(minTA))")
@@ -113,7 +139,12 @@ struct WaterTestView: View {
 
         VStack(spacing: 0) {
             Text("Stabilizer (CYA)").font(.footnote).bold()
-            Text("\(Int(valueST))").font(.title).bold()
+//            Text("\(Int(valueST))").font(.title).bold()
+            if valueST < 40 || valueST > 750 {
+                Text("\(Int(valueST))").font(.title).bold().foregroundColor(Color.red)
+            } else  {
+                Text("\(Int(valueST))").font(.title).bold()
+            }
             
             HStack {
                 Text("\(Int(minST))")
@@ -124,11 +155,6 @@ struct WaterTestView: View {
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }
         .navigationBarTitle(Text("Pool Water Test"), displayMode:.inline)
-
-        Text("This is the Water Test View")
-
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-
     }
 }
 
