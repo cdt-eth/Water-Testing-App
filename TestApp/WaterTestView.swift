@@ -60,7 +60,7 @@ struct WaterTestView: View {
                 Text("\(Int(maxTH))")
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }
-
+        
         VStack(spacing: 0) {
             Text("Total Chlorine").font(.footnote).bold()
             
@@ -72,10 +72,10 @@ struct WaterTestView: View {
             
             HStack {
                 Text("\(Int(minTC))")
-            
+                
                 Slider(value: $valueTC, in: minTC...maxTC)
                 
-//                Image(systemName:"line.horizontal.3.circle.fill").resizable()
+                
                 
                 Text("\(Int(maxTC))")
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
@@ -84,7 +84,7 @@ struct WaterTestView: View {
         
         VStack(spacing: 0) {
             Text("Free Chlorine").font(.footnote).bold()
-//            Text("\(Double(valueFC), specifier: "%.1f")").font(.title).bold()
+            
             if valueFC < 4 || valueFC > 15 {
                 Text("\(Double(valueFC), specifier: "%.1f")").font(.title).bold().foregroundColor(Color.red)
             } else  {
@@ -99,10 +99,10 @@ struct WaterTestView: View {
                 Text("\(Int(maxFC))")
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }
-
+        
         VStack(spacing: 0) {
             Text("pH").font(.footnote).bold()
-//            Text("\(Double(valuePH), specifier: "%.1f")").font(.title).bold()
+            
             if valuePH < 7.3 || valuePH > 8.0 {
                 Text("\(Double(valuePH), specifier: "%.1f")").font(.title).bold().foregroundColor(Color.red)
             } else  {
@@ -117,11 +117,11 @@ struct WaterTestView: View {
                 Text("\(Int(maxPH))")
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }
-
+        
         VStack(spacing: 0) {
-
+            
             Text("Total Alkalinity").font(.footnote).bold()
-//            Text("\(Int(valueTA))").font(.title).bold()
+            
             if valueTA < 40 || valueTA > 750 {
                 Text("\(Int(valueTA))").font(.title).bold().foregroundColor(Color.red)
             } else  {
@@ -136,10 +136,10 @@ struct WaterTestView: View {
                 Text("\(Int(maxTA))")
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }
-
+        
         VStack(spacing: 0) {
             Text("Stabilizer (CYA)").font(.footnote).bold()
-//            Text("\(Int(valueST))").font(.title).bold()
+            
             if valueST < 40 || valueST > 750 {
                 Text("\(Int(valueST))").font(.title).bold().foregroundColor(Color.red)
             } else  {
