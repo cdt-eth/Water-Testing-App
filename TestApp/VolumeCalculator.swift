@@ -46,8 +46,13 @@ struct VolumeCalculator: View {
     
 
     var totalVolume : Double {
-        guard let m = Double(length), let n  = Double(width) else { return 0 }
-        return m * n
+        guard let l = Double(length),
+              let w = Double(width),
+              let s = Double(shallowEndDepth),
+              let d = Double(deepEndDepth)
+               else { return 0 }
+
+        return l * w * ((d+s)/2) * 7.5
     }
     
     
@@ -62,9 +67,6 @@ struct VolumeCalculator: View {
                     .frame(width: 350)
                     .padding()
                 
-                Text(" Your pool volume is: \(totalVolume, specifier: "%.0f")")
-                    .font(.headline).bold()
-                    .padding()
                     
                 HStack{
                     FloatingLabelTextField($length, placeholder: "Length", editingChanged: { (isChanged) in
@@ -85,6 +87,7 @@ struct VolumeCalculator: View {
                     .modifier(ThemeTextField())
                 }.padding()
                 
+                
                 HStack{
                     FloatingLabelTextField($shallowEndDepth, placeholder: "Shallow End Depth", editingChanged: { (isChanged) in
                         
@@ -103,13 +106,20 @@ struct VolumeCalculator: View {
                     .frame(height: 70)
                     .modifier(ThemeTextField())
                 }.padding()
+             
+                
+                Text(" Your pool volume is: \(totalVolume, specifier: "%.0f")")
+                    .font(.headline).bold()
+                    .padding(.top, 50)
                 
                 Spacer()
                 
             }.padding(.top, 50)
-            .onTapGesture {
-                endEditing()
-            }
+//            .onTapGesture {
+//                endEditing()
+//            }
+        }.onTapGesture {
+            endEditing()
         }
     }
     private func endEditing() {
