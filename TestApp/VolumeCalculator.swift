@@ -21,6 +21,45 @@ import FloatingLabelTextFieldSwiftUI
 //    }
 //}
 
+
+struct MyRadioButton: View {
+    let id: Int
+    
+    @Binding var currentlySelectedId: Int
+    
+    let label: String
+    
+    var body: some View {
+        
+        Button(label , action: { currentlySelectedId = id })
+            .foregroundColor(id == currentlySelectedId ? .green : .red)
+        
+    }
+}
+
+
+struct MyRadioButtons: View {
+    
+    init(selection: Binding<Int>) {
+        _currentlySelectedId = selection
+    }
+    
+    @Binding var currentlySelectedId: Int
+    
+    var body: some View {
+        HStack {
+            MyRadioButton(id: 1, currentlySelectedId: $currentlySelectedId, label: "Rectangle" )
+            MyRadioButton(id: 2, currentlySelectedId: $currentlySelectedId, label: "Round" )
+            MyRadioButton(id: 3, currentlySelectedId: $currentlySelectedId, label: "Oval" )
+            MyRadioButton(id: 4, currentlySelectedId: $currentlySelectedId, label: "Kidney" )
+        }
+        
+    }
+}
+
+
+
+
 struct Background<Content: View>: View {
     private var content: Content
     
@@ -43,6 +82,7 @@ struct VolumeCalculator: View {
     @State private var deepEndDepth: String = ""
     @State private var volume: String = ""
     @State var weight = 0
+    @State var selection: Int = 0
     
     
     var totalVolume : Double {
@@ -67,6 +107,11 @@ struct VolumeCalculator: View {
                     .frame(width: 350)
                     .padding()
                 
+                
+                    MyRadioButtons(selection: $selection)
+                        
+                    if selection == 1  {
+
                 
                 HStack{
                     FloatingLabelTextField($length, placeholder: "Length", editingChanged: { (isChanged) in
@@ -106,6 +151,8 @@ struct VolumeCalculator: View {
                     .frame(height: 70)
                     .modifier(ThemeTextField())
                 }.padding()
+                    
+                    }
                 
                 
                 Text(" Your pool volume is: \(totalVolume, specifier: "%.0f")")
