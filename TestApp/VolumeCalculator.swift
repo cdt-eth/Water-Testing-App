@@ -8,6 +8,9 @@
 import SwiftUI
 
 
+
+
+
 class NumbersOnly: ObservableObject {
     @Published var value = "" {
         didSet {
@@ -41,6 +44,9 @@ struct VolumeCalculator: View {
     @State var input = 0.0
     
     var body: some View {
+      
+        
+        
         let someNumberProxy = Binding<String>(
             get: { String(format: "%.01f", Double(input)) },
             set: {

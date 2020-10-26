@@ -4,7 +4,7 @@ target 'Water Testing' do
   use_frameworks!
 
 
-pod 'NumberField', '0.4.2'
+
 
 
 
