@@ -30,7 +30,8 @@ struct ContentView: View {
                     MainView(showMenu: $showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .offset(x: showMenu ? geometry.size.width/2 : 0)
-                        .disabled(showMenu ? true : false)
+//                        .disabled(showMenu ? true : false)
+                        
                     
                     if showMenu {
                         MenuView()

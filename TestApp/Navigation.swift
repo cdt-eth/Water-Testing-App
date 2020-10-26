@@ -27,7 +27,7 @@ struct MenuView: View {
                         .font(.headline)
                         .foregroundColor(Color.black)
                 }
-            }.padding(.top, 100)
+            }.padding(.top, 150)
             
             HStack {
                 NavigationLink(destination: WaterTestView()) {
