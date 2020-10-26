@@ -8,20 +8,18 @@
 import SwiftUI
 import FloatingLabelTextFieldSwiftUI
 
-//import UIKit
-//import MaterialComponents.MaterialTextFields
 
-class NumbersOnly: ObservableObject {
-    @Published var value = "" {
-        didSet {
-            let filtered = value.filter { $0.isNumber }
-            
-            if value != filtered {
-                value = filtered
-            }
-        }
-    }
-}
+//class NumbersOnly: ObservableObject {
+//    @Published var value = "" {
+//        didSet {
+//            let filtered = value.filter { $0.isNumber }
+//
+//            if value != filtered {
+//                value = filtered
+//            }
+//        }
+//    }
+//}
 
 struct Background<Content: View>: View {
     private var content: Content
@@ -37,90 +35,83 @@ struct Background<Content: View>: View {
     }
 }
 
-//
-//class ViewController:UIViewController{
-//    var textController: MDCTextInputControllerOutlined!
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        let textFieldFloating = MDCTextField(frame: CGRect(x:0, y: 20, width: self.view.frame.width - 50, height:50))
-//        textFieldFloating.placeholder = "Username"
-//        textFieldFloating.center = self.view.center
-//
-//            self.view.addSubView(textFieldFloating)
-//
-//
-//        self.textController = MDCTextInputControllerOutlined(textInput: textFieldFloating)
-//        self.textController.textInsets(UIEdgeInsets(top:16,left:16, bottom:16, right:16))
-//    }
-//}
-//
-
-
 struct VolumeCalculator: View {
+    
+    @State private var length: String = ""
+    @State private var width: String = ""
+    @State private var shallowEndDepth: String = ""
+    @State private var deepEndDepth: String = ""
+    @State private var volume: String = ""
+    @State var weight = 0
+    
 
-    @State var input = 0.0
-    @State private var firstName: String = ""
-    @State private var lastName: String = ""
+    var totalVolume : Double {
+        guard let m = Double(length), let n  = Double(width) else { return 0 }
+        return m * n
+    }
+    
     
     var body: some View {
         
-        
-        
-        let someNumberProxy = Binding<String>(
-            get: { String(format: "%.01f", Double(input)) },
-            set: {
-                if let value = NumberFormatter().number(from: $0) {
-                    input = value.doubleValue
-                }
-            }
-        )
-        
-        return Background {
+        Background {
+            
             VStack {
-                HStack{
-                    FloatingLabelTextField($firstName, placeholder: "First Name", editingChanged: { (isChanged) in
-                            }) {
-                    }.frame(height: 70)
+                
+                Text("Knowing how many gallons of water your pool holds allows us to provide accurate does recommendtions.")
+                    .multilineTextAlignment(.center)
+                    .frame(width: 350)
+                    .padding()
+                
+                Text(" Your pool volume is: \(totalVolume, specifier: "%.0f")")
+                    .font(.headline).bold()
+                    .padding()
                     
-                    FloatingLabelTextField($lastName, placeholder: "Last Name", editingChanged: { (isChanged) in
-                            }) {
-                    }.frame(height: 70)
+                HStack{
+                    FloatingLabelTextField($length, placeholder: "Length", editingChanged: { (isChanged) in
+                        
+                    }) {
+                        
+                    }
+                    .keyboardType(.decimalPad)
+                    .frame(height: 70)
+                    .modifier(ThemeTextField())
+                    FloatingLabelTextField($width, placeholder: "Width", editingChanged: { (isChanged) in
+                        
+                    }) {
+                        
+                    }
+                    .keyboardType(.decimalPad)
+                    .frame(height: 70)
+                    .modifier(ThemeTextField())
                 }.padding()
                 
-                TextField("Number", text: someNumberProxy)
-                    .padding()
+                HStack{
+                    FloatingLabelTextField($shallowEndDepth, placeholder: "Shallow End Depth", editingChanged: { (isChanged) in
+                        
+                    }) {
+                        
+                    }
                     .keyboardType(.decimalPad)
+                    .frame(height: 70)
+                    .modifier(ThemeTextField())
+                    FloatingLabelTextField($deepEndDepth, placeholder: "Deep End Depth", editingChanged: { (isChanged) in
+                        
+                    }) {
+                        
+                    }
+                    .keyboardType(.decimalPad)
+                    .frame(height: 70)
+                    .modifier(ThemeTextField())
+                }.padding()
                 
-                Text("number: \(input)")
+                Spacer()
                 
-                
-                
+            }.padding(.top, 50)
+            .onTapGesture {
+                endEditing()
             }
-        }.onTapGesture {
-            endEditing()
         }
     }
-    
-    //    @ObservedObject var input = NumbersOnly()
-    //
-    //    var body: some View {
-    //
-    //        Background {
-    //            VStack {
-    //                TextField("Input", text: $input.value, onCommit:  {
-    //                    endEditing()
-    //                }).padding()
-    //                .keyboardType(.decimalPad)
-    //                Text("Volume!")
-    //                    .padding()
-    //            }
-    //        }.onTapGesture {
-    //            endEditing()
-    //        }
-    //    }
-    
     private func endEditing() {
         UIApplication.shared.endEditing()
     }
