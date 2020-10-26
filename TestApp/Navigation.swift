@@ -38,7 +38,7 @@ struct MenuView: View {
             }.padding(.top, 25)
             
             HStack {
-                NavigationLink(destination: WaterTestView()) {
+                NavigationLink(destination: VolumeCalculator()) {
                     Text("Volume Calculator")
                         .font(.headline)
                         .foregroundColor(Color.black)
