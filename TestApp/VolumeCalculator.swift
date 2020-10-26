@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import FloatingLabelTextFieldSwiftUI
 
-
-
-
+//import UIKit
+//import MaterialComponents.MaterialTextFields
 
 class NumbersOnly: ObservableObject {
     @Published var value = "" {
@@ -37,14 +37,35 @@ struct Background<Content: View>: View {
     }
 }
 
+//
+//class ViewController:UIViewController{
+//    var textController: MDCTextInputControllerOutlined!
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        let textFieldFloating = MDCTextField(frame: CGRect(x:0, y: 20, width: self.view.frame.width - 50, height:50))
+//        textFieldFloating.placeholder = "Username"
+//        textFieldFloating.center = self.view.center
+//
+//            self.view.addSubView(textFieldFloating)
+//
+//
+//        self.textController = MDCTextInputControllerOutlined(textInput: textFieldFloating)
+//        self.textController.textInsets(UIEdgeInsets(top:16,left:16, bottom:16, right:16))
+//    }
+//}
+//
 
 
 struct VolumeCalculator: View {
-    
+
     @State var input = 0.0
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
     
     var body: some View {
-      
+        
         
         
         let someNumberProxy = Binding<String>(
@@ -58,11 +79,24 @@ struct VolumeCalculator: View {
         
         return Background {
             VStack {
+                HStack{
+                    FloatingLabelTextField($firstName, placeholder: "First Name", editingChanged: { (isChanged) in
+                            }) {
+                    }.frame(height: 70)
+                    
+                    FloatingLabelTextField($lastName, placeholder: "Last Name", editingChanged: { (isChanged) in
+                            }) {
+                    }.frame(height: 70)
+                }.padding()
+                
                 TextField("Number", text: someNumberProxy)
                     .padding()
                     .keyboardType(.decimalPad)
                 
                 Text("number: \(input)")
+                
+                
+                
             }
         }.onTapGesture {
             endEditing()

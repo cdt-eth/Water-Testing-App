@@ -4,6 +4,7 @@ target 'Water Testing' do
   use_frameworks!
 
 
+pod 'FloatingLabelTextFieldSwiftUI'
 
 
 

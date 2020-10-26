@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 1750e88e97be8eb19a385e86d1098c91bf6116ce
+PODS:
+  - FloatingLabelTextFieldSwiftUI (4.0.4)
+
+DEPENDENCIES:
+  - FloatingLabelTextFieldSwiftUI
+
+SPEC REPOS:
+  trunk:
+    - FloatingLabelTextFieldSwiftUI
+
+SPEC CHECKSUMS:
+  FloatingLabelTextFieldSwiftUI: 0e26db4f2d3c932d80e5e0140215427b0acbae4b
+
+PODFILE CHECKSUM: d5f20ed5d6bc76cf2c77c88e5ca2516f56ee2d0e
 
 COCOAPODS: 1.10.0
