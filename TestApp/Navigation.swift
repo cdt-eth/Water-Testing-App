@@ -10,6 +10,7 @@ import SwiftUI
 struct Navigation: View {
     var body: some View {
         NavigationView {
+//        List{
             VStack{
                 NavigationLink(destination: CustomerView()) {
                     HStack(spacing: 22) {
@@ -54,9 +55,11 @@ struct Navigation: View {
                 }.padding(.top, 25)
                 
                 
-            }.navigationBarTitle("")
+            }
+            .navigationBarTitle("")
             .navigationBarHidden(true)
-        }.padding(.bottom,300)
+        }
+    .padding(.bottom,300)
     }
 }
 
