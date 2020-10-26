@@ -9,17 +9,17 @@ import SwiftUI
 
 struct MenuView: View {
     var body: some View {
-//        
+        //
         VStack(alignment: .leading) {
             
-//            Button(action: {
-//                withAnimation {
-//                    showMenu.toggle()
-//                }
-//            }) {
-//                Image(systemName: "line.horizontal.3")
-//                    .imageScale(.large)
-//            }
+            //            Button(action: {
+            //                withAnimation {
+            //                    showMenu.toggle()
+            //                }
+            //            }) {
+            //                Image(systemName: "line.horizontal.3")
+            //                    .imageScale(.large)
+            //            }
             
             HStack {
                 NavigationLink(destination: CustomerView()) {
@@ -89,94 +89,3 @@ struct MenuView_Previews: PreviewProvider {
         MenuView()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//struct Navigation: View {
-//    var body: some View {
-//        NavigationView {
-////        List{
-//            VStack{
-//                NavigationLink(destination: CustomerView()) {
-//                    HStack(spacing: 22) {
-//                        Text("My Customers")
-//                        Spacer()
-//                    }
-//                }.padding(.top, 25)
-//
-//                NavigationLink(destination: WaterTestView()) {
-//                    HStack(spacing: 22) {
-//                        Text("Water Test")
-//                        Spacer()
-//                    }
-//                }.padding(.top, 25)
-//
-//                NavigationLink(destination: WaterTestView()) {
-//                    HStack(spacing: 22) {
-//                        Text("Volume Calculator")
-//                        Spacer()
-//                    }
-//                }.padding(.top, 25)
-//
-//                NavigationLink(destination: WaterTestView()) {
-//                    HStack(spacing: 22) {
-//                        Text("Contact Us")
-//                        Spacer()
-//                    }
-//                }.padding(.top, 25)
-//
-//
-//                HStack(spacing: 22) {
-//                    Link("Website", destination: URL(string: "https://www.proseriespool.com")!)
-//                    Spacer()
-//                }.padding(.top, 25)
-//
-//
-//                NavigationLink(destination: WaterTestView()) {
-//                    HStack(spacing: 22) {
-//                        Text("Logout")
-//                        Spacer()
-//                    }
-//                }.padding(.top, 25)
-//
-//
-//            }
-//            .navigationBarTitle("")
-//            .navigationBarHidden(true)
-//        }
-//    .padding(.bottom,300)
-//    }
-//}
-
-//
-//struct SwiftUIView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Navigation()
-//    }
-//}

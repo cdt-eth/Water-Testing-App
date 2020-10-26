@@ -44,14 +44,14 @@ struct VolumeCalculator: View {
     @State private var volume: String = ""
     @State var weight = 0
     
-
+    
     var totalVolume : Double {
         guard let l = Double(length),
               let w = Double(width),
               let s = Double(shallowEndDepth),
               let d = Double(deepEndDepth)
-               else { return 0 }
-
+        else { return 0 }
+        
         return l * w * ((d+s)/2) * 7.5
     }
     
@@ -67,7 +67,7 @@ struct VolumeCalculator: View {
                     .frame(width: 350)
                     .padding()
                 
-                    
+                
                 HStack{
                     FloatingLabelTextField($length, placeholder: "Length", editingChanged: { (isChanged) in
                         
@@ -106,7 +106,7 @@ struct VolumeCalculator: View {
                     .frame(height: 70)
                     .modifier(ThemeTextField())
                 }.padding()
-             
+                
                 
                 Text(" Your pool volume is: \(totalVolume, specifier: "%.0f")")
                     .font(.headline).bold()
@@ -115,9 +115,9 @@ struct VolumeCalculator: View {
                 Spacer()
                 
             }.padding(.top, 50)
-//            .onTapGesture {
-//                endEditing()
-//            }
+            //            .onTapGesture {
+            //                endEditing()
+            //            }
         }.onTapGesture {
             endEditing()
         }
