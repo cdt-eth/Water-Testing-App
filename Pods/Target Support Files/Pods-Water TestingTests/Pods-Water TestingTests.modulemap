@@ -1,0 +1,6 @@
+framework module Pods_Water_TestingTests {
+  umbrella header "Pods-Water TestingTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - NumberField (0.4.2)
+
+DEPENDENCIES:
+  - NumberField (= 0.4.2)
+
+SPEC REPOS:
+  trunk:
+    - NumberField
+
+SPEC CHECKSUMS:
+  NumberField: 58347a18c0af53f0d34f1cf7398804f738b4f603
+
+PODFILE CHECKSUM: 00d4786214a0226505de61c4fa3d4b2a40cb315f
+
+COCOAPODS: 1.10.0
