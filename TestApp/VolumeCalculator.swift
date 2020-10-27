@@ -76,8 +76,12 @@ struct Background<Content: View>: View {
 
 struct VolumeCalculator: View {
     
+    @State private var pi: Double = 3.14
     @State private var length: String = ""
     @State private var width: String = ""
+    @State private var longWidth: String = ""
+    @State private var shortWidth: String = ""
+    @State private var diameter: String = ""
     @State private var shallowEndDepth: String = ""
     @State private var deepEndDepth: String = ""
     @State private var volume: String = ""
@@ -85,14 +89,42 @@ struct VolumeCalculator: View {
     @State var selection: Int = 0
     
     
-    var totalVolume : Double {
+    var rectVolume : Double {
         guard let l = Double(length),
               let w = Double(width),
               let s = Double(shallowEndDepth),
               let d = Double(deepEndDepth)
         else { return 0 }
-        
         return l * w * ((d+s)/2) * 7.5
+    }
+    
+    var roundVolume : Double {
+        guard let di = Double(diameter),
+              let s = Double(shallowEndDepth),
+              let d = Double(deepEndDepth)
+        else { return 0 }
+        // Diameter * Diameter * Depth * 5.9
+        // 3.14 x diameter x average depth x 7.5
+        return di * pi * ((d+s)/2) * 7.5
+    }
+    
+    var ovalVolume : Double {
+        guard let l = Double(length),
+              let w = Double(width),
+              let s = Double(shallowEndDepth),
+              let d = Double(deepEndDepth)
+        else { return 0 }
+        return l * w * ((d+s)/2) * 5.9
+    }
+
+    var kidneyVolume : Double {
+        guard let l = Double(length),
+              let sw = Double(shortWidth),
+              let lw = Double(longWidth),
+              let s = Double(shallowEndDepth),
+              let d = Double(deepEndDepth)
+        else { return 0 }
+        return l * (sw + lw) * 0.45 * ((d+s)/2) * 7.5
     }
     
     
@@ -101,19 +133,156 @@ struct VolumeCalculator: View {
         Background {
             
             VStack {
-                
                 Text("Knowing how many gallons of water your pool holds allows us to provide accurate does recommendtions.")
                     .multilineTextAlignment(.center)
                     .frame(width: 350)
                     .padding()
                 
                 
-                    MyRadioButtons(selection: $selection)
-                        
-                    if selection == 1  {
-
+                MyRadioButtons(selection: $selection)
                 
-                HStack{
+                // MARK: - RECTANGLE START
+                if selection == 1  {
+                    HStack{
+                        FloatingLabelTextField($length, placeholder: "Length", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                        FloatingLabelTextField($width, placeholder: "Width", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                    }.padding()
+                    
+                    HStack{
+                        FloatingLabelTextField($shallowEndDepth, placeholder: "Shallow End Depth", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                        FloatingLabelTextField($deepEndDepth, placeholder: "Deep End Depth", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                    }.padding()
+                    
+                    Text(" Your pool volume is: \(rectVolume, specifier: "%.0f")")
+                        .font(.headline).bold()
+                        .padding(.top, 50)
+                    
+                }
+                // MARK: - RECTANGLE END
+                
+                
+                
+                // MARK: - ROUND START
+                if selection == 2  {
+                    VStack{
+                        FloatingLabelTextField($diameter, placeholder: "Diameter", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                        
+                        FloatingLabelTextField($shallowEndDepth, placeholder: "Shallow End Depth", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                        
+                        FloatingLabelTextField($deepEndDepth, placeholder: "Deep End Depth", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                        
+                    }.padding()
+                    
+                    
+                    Text(" Your pool volume is: \(roundVolume, specifier: "%.0f")")
+                        .font(.headline).bold()
+                        .padding(.top, 50)
+                  
+                    
+                }
+                // MARK: - ROUND END
+                
+                
+                // MARK: - OVAL START
+                if selection == 3  {
+                    HStack{
+                        FloatingLabelTextField($length, placeholder: "Length", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                        FloatingLabelTextField($width, placeholder: "Width", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                    }.padding()
+                    
+                    HStack{
+                        FloatingLabelTextField($shallowEndDepth, placeholder: "Shallow End Depth", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                        FloatingLabelTextField($deepEndDepth, placeholder: "Deep End Depth", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                    }.padding()
+                    
+                    Text(" Your pool volume is: \(ovalVolume, specifier: "%.0f")")
+                        .font(.headline).bold()
+                        .padding(.top, 50)
+                    
+                }
+                // MARK: - OVAL END
+                
+                
+                // MARK: - KIDNEY START
+                if selection == 4  {
+                    
                     FloatingLabelTextField($length, placeholder: "Length", editingChanged: { (isChanged) in
                         
                     }) {
@@ -122,49 +291,57 @@ struct VolumeCalculator: View {
                     .keyboardType(.decimalPad)
                     .frame(height: 70)
                     .modifier(ThemeTextField())
-                    FloatingLabelTextField($width, placeholder: "Width", editingChanged: { (isChanged) in
-                        
-                    }) {
-                        
-                    }
-                    .keyboardType(.decimalPad)
-                    .frame(height: 70)
-                    .modifier(ThemeTextField())
-                }.padding()
-                
-                
-                HStack{
-                    FloatingLabelTextField($shallowEndDepth, placeholder: "Shallow End Depth", editingChanged: { (isChanged) in
-                        
-                    }) {
-                        
-                    }
-                    .keyboardType(.decimalPad)
-                    .frame(height: 70)
-                    .modifier(ThemeTextField())
-                    FloatingLabelTextField($deepEndDepth, placeholder: "Deep End Depth", editingChanged: { (isChanged) in
-                        
-                    }) {
-                        
-                    }
-                    .keyboardType(.decimalPad)
-                    .frame(height: 70)
-                    .modifier(ThemeTextField())
-                }.padding()
+                    .padding()
                     
-                    }
-                
-                
-                Text(" Your pool volume is: \(totalVolume, specifier: "%.0f")")
-                    .font(.headline).bold()
-                    .padding(.top, 50)
-                
+                    HStack{
+                        FloatingLabelTextField($shortWidth, placeholder: "Short Width", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                        
+                        FloatingLabelTextField($longWidth, placeholder: "Long Width", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                    }.padding()
+                    
+                    HStack{
+                        FloatingLabelTextField($shallowEndDepth, placeholder: "Shallow End Depth", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                        FloatingLabelTextField($deepEndDepth, placeholder: "Deep End Depth", editingChanged: { (isChanged) in
+                            
+                        }) {
+                            
+                        }
+                        .keyboardType(.decimalPad)
+                        .frame(height: 70)
+                        .modifier(ThemeTextField())
+                    }.padding()
+                    
+                    Text(" Your pool volume is: \(kidneyVolume, specifier: "%.0f")")
+                        .font(.headline).bold()
+                        .padding(.top, 50)
+                    
+                }
+                // MARK: - KIDNEY END
+
                 Spacer()
                 
             }.padding(.top, 50)
-            //            .onTapGesture {
-            //                endEditing()
-            //            }
         }.onTapGesture {
             endEditing()
         }
