@@ -145,7 +145,7 @@ struct VolumeCalculator: View {
         return (sw + lw) * l * ((d+s)/2) * 7.5 * 0.45
     }
     
-    
+    @State private var isShowError: Bool = false
     
     var body: some View {
         Background {
@@ -296,59 +296,64 @@ struct VolumeCalculator: View {
                 // MARK: - KIDNEY START
                 if selection == 4  {
                     
-                    FloatingLabelTextField($length, placeholder: "Length", editingChanged: { (isChanged) in
+                    HStack{
+                    FloatingLabelTextField($length, placeholder: "Length*", editingChanged: { (isChanged) in }) {}
+                            .isShowError(true)
+                            .addValidations([.init(condition: length.count < 3, errorMessage: "Maximum of two-digit numbers")])
+                            .isRequiredField(true, with: "Required")
+                            .floatingStyle(ThemeTextFieldStyle())
+                            .modifier(ThemeTextField())
+                            .keyboardType(.decimalPad)
+                            .frame(height: 70)
+                    }.padding()
+                    
+                    HStack{
+                        FloatingLabelTextField($shortWidth, placeholder: "Short Width*", editingChanged: { (isChanged) in }) {}
+                                .isShowError(true)
+                                .addValidations([.init(condition: shortWidth.count < 3, errorMessage: "Maximum of two-digit numbers")])
+                                .isRequiredField(true, with: "Required")
+                                .floatingStyle(ThemeTextFieldStyle())
+                                .modifier(ThemeTextField())
+                                .keyboardType(.decimalPad)
+                                .frame(height: 70)
                         
-                    }) {
+                        FloatingLabelTextField($longWidth, placeholder: "Long Width*", editingChanged: { (isChanged) in }) {}
+                                .isShowError(true)
+                                .addValidations([.init(condition: longWidth.count < 3, errorMessage: "Maximum of two-digit numbers")])
+                                .isRequiredField(true, with: "Required")
+                                .floatingStyle(ThemeTextFieldStyle())
+                                .modifier(ThemeTextField())
+                                .keyboardType(.decimalPad)
+                                .frame(height: 70)
+                    }.padding()
+                    
+                    HStack{
                         
+                        FloatingLabelTextField($shallowEndDepth, placeholder: "Shallow End Depth*", editingChanged: { (isChanged) in }) {}
+                                .isShowError(true)
+                                .addValidations([.init(condition: shallowEndDepth.count < 3, errorMessage: "Maximum of two-digit numbers")])
+                                .isRequiredField(true, with: "Required")
+                                .floatingStyle(ThemeTextFieldStyle())
+                                .modifier(ThemeTextField())
+                                .keyboardType(.decimalPad)
+                                .frame(height: 70)
+                        
+                        FloatingLabelTextField($deepEndDepth, placeholder: "Deep End Depth*", editingChanged: { (isChanged) in }) {}
+                                .isShowError(true)
+                                .addValidations([.init(condition: deepEndDepth.count < 3, errorMessage: "Maximum of two-digit numbers")])
+                                .isRequiredField(true, with: "Required")
+                                .floatingStyle(ThemeTextFieldStyle())
+                                .modifier(ThemeTextField())
+                                .keyboardType(.decimalPad)
+                                .frame(height: 70)
+                    }.padding()
+                    
+                    
+                    if isShowError == false  {
+                        Text(" Your pool volume is: \(kidneyVolume, specifier: "%.0f")")
+                            .font(.headline).bold()
+                            .padding(.top, 50)
                     }
-                    .keyboardType(.decimalPad)
-                    .frame(height: 70)
-                    .modifier(ThemeTextField())
-                    .padding()
-                    
-                    HStack{
-                        FloatingLabelTextField($shortWidth, placeholder: "Short Width", editingChanged: { (isChanged) in
-                            
-                        }) {
-                            
-                        }
-                        .keyboardType(.decimalPad)
-                        .frame(height: 70)
-                        .modifier(ThemeTextField())
-                        
-                        FloatingLabelTextField($longWidth, placeholder: "Long Width", editingChanged: { (isChanged) in
-                            
-                        }) {
-                            
-                        }
-                        .keyboardType(.decimalPad)
-                        .frame(height: 70)
-                        .modifier(ThemeTextField())
-                    }.padding()
-                    
-                    HStack{
-                        FloatingLabelTextField($shallowEndDepth, placeholder: "Shallow End Depth", editingChanged: { (isChanged) in
-                            
-                        }) {
-                            
-                        }
-                        .keyboardType(.decimalPad)
-                        .frame(height: 70)
-                        .modifier(ThemeTextField())
-                        FloatingLabelTextField($deepEndDepth, placeholder: "Deep End Depth", editingChanged: { (isChanged) in
-                            
-                        }) {
-                            
-                        }
-                        .keyboardType(.decimalPad)
-                        .frame(height: 70)
-                        .modifier(ThemeTextField())
-                    }.padding()
-                    
-                    Text(" Your pool volume is: \(kidneyVolume, specifier: "%.0f")")
-                        .font(.headline).bold()
-                        .padding(.top, 50)
-                    
                 }
                 // MARK: - KIDNEY END
                 
