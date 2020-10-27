@@ -84,8 +84,12 @@ struct MainView: View {
                             
                             Spacer()
                             
-                            Image(systemName: "person")
-                                .font(.title)
+                            NavigationLink(destination: CustomerView()) {
+                                Image(systemName: "person")
+                                    .font(.title)
+                                }
+//                            Image(systemName: "person")
+//                                .font(.title)
                         }
                     }
                     .padding()
