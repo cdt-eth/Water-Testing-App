@@ -31,9 +31,18 @@ struct MyRadioButton: View {
     
     var body: some View {
         
-        Button(label , action: { currentlySelectedId = id })
-            .foregroundColor(id == currentlySelectedId ? .green : .red)
-        
+        Button(label , action: {
+            currentlySelectedId = id
+        })
+        .padding(10.0)
+        .foregroundColor(id == currentlySelectedId ? .white : .black)
+        .background(id == currentlySelectedId ? Color("DarkBlue") : .white)
+        .cornerRadius(10)
+        .frame(width: 100)
+        .overlay(RoundedRectangle(cornerRadius: 10.0)
+                    .stroke(lineWidth: 2.0)
+                    .fill(id == currentlySelectedId ? Color("DarkBlue") : .black)
+        )
     }
 }
 
@@ -47,13 +56,19 @@ struct MyRadioButtons: View {
     @Binding var currentlySelectedId: Int
     
     var body: some View {
-        HStack {
-            MyRadioButton(id: 1, currentlySelectedId: $currentlySelectedId, label: "Rectangle" )
-            MyRadioButton(id: 2, currentlySelectedId: $currentlySelectedId, label: "Round" )
-            MyRadioButton(id: 3, currentlySelectedId: $currentlySelectedId, label: "Oval" )
-            MyRadioButton(id: 4, currentlySelectedId: $currentlySelectedId, label: "Kidney" )
+        VStack{
+            HStack(spacing: 5) {
+                MyRadioButton(id: 1, currentlySelectedId: $currentlySelectedId, label: "Rectangle" )
+                Spacer()
+                MyRadioButton(id: 2, currentlySelectedId: $currentlySelectedId, label: "Round" )
+            }.frame(width: 200).padding(.bottom, 10)
+            
+            HStack(spacing: 5) {
+                MyRadioButton(id: 3, currentlySelectedId: $currentlySelectedId, label: "Oval" )
+                Spacer()
+                MyRadioButton(id: 4, currentlySelectedId: $currentlySelectedId, label: "Kidney" )
+            }.frame(width: 200)
         }
-        
     }
 }
 
@@ -76,7 +91,6 @@ struct Background<Content: View>: View {
 
 struct VolumeCalculator: View {
     
-    @State private var pi: Double = 3.14
     @State private var length: String = ""
     @State private var width: String = ""
     @State private var longWidth: String = ""
@@ -85,9 +99,7 @@ struct VolumeCalculator: View {
     @State private var shallowEndDepth: String = ""
     @State private var deepEndDepth: String = ""
     @State private var volume: String = ""
-    @State var weight = 0
     @State var selection: Int = 0
-    
     
     var rectVolume : Double {
         guard let l = Double(length),
@@ -95,6 +107,8 @@ struct VolumeCalculator: View {
               let s = Double(shallowEndDepth),
               let d = Double(deepEndDepth)
         else { return 0 }
+        
+        // (Length * Width * ((Deep Depth + Shallow Depth)/2) * 7.5)
         return l * w * ((d+s)/2) * 7.5
     }
     
@@ -103,9 +117,9 @@ struct VolumeCalculator: View {
               let s = Double(shallowEndDepth),
               let d = Double(deepEndDepth)
         else { return 0 }
-        // Diameter * Diameter * Depth * 5.9
-        // 3.14 x diameter x average depth x 7.5
-        return di * pi * ((d+s)/2) * 7.5
+        
+        // (Diameter * Diameter * ((Deep Depth + Shallow Depth)/2) * 5.9)
+        return di * di * ((d+s)/2) * 5.9
     }
     
     var ovalVolume : Double {
@@ -114,9 +128,11 @@ struct VolumeCalculator: View {
               let s = Double(shallowEndDepth),
               let d = Double(deepEndDepth)
         else { return 0 }
+        
+        // (Length * Width * ((Deep Depth + Shallow Depth)/2) * 5.9)
         return l * w * ((d+s)/2) * 5.9
     }
-
+    
     var kidneyVolume : Double {
         guard let l = Double(length),
               let sw = Double(shortWidth),
@@ -124,22 +140,23 @@ struct VolumeCalculator: View {
               let s = Double(shallowEndDepth),
               let d = Double(deepEndDepth)
         else { return 0 }
-        return l * (sw + lw) * 0.45 * ((d+s)/2) * 7.5
+        
+        // (Short Width + Long Width) x L x ((Deep Depth + Shallow Depth)/2) x 7.5 x 0.45
+        return (sw + lw) * l * ((d+s)/2) * 7.5 * 0.45
     }
     
     
+    
     var body: some View {
-        
         Background {
-            
             VStack {
+                
                 Text("Knowing how many gallons of water your pool holds allows us to provide accurate does recommendtions.")
                     .multilineTextAlignment(.center)
                     .frame(width: 350)
                     .padding()
                 
-                
-                MyRadioButtons(selection: $selection)
+                MyRadioButtons(selection: $selection).padding()
                 
                 // MARK: - RECTANGLE START
                 if selection == 1  {
@@ -188,8 +205,6 @@ struct VolumeCalculator: View {
                 }
                 // MARK: - RECTANGLE END
                 
-                
-                
                 // MARK: - ROUND START
                 if selection == 2  {
                     VStack{
@@ -226,11 +241,10 @@ struct VolumeCalculator: View {
                     Text(" Your pool volume is: \(roundVolume, specifier: "%.0f")")
                         .font(.headline).bold()
                         .padding(.top, 50)
-                  
+                    
                     
                 }
                 // MARK: - ROUND END
-                
                 
                 // MARK: - OVAL START
                 if selection == 3  {
@@ -278,7 +292,6 @@ struct VolumeCalculator: View {
                     
                 }
                 // MARK: - OVAL END
-                
                 
                 // MARK: - KIDNEY START
                 if selection == 4  {
@@ -338,7 +351,7 @@ struct VolumeCalculator: View {
                     
                 }
                 // MARK: - KIDNEY END
-
+                
                 Spacer()
                 
             }.padding(.top, 50)

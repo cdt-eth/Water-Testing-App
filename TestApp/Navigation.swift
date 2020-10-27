@@ -12,15 +12,6 @@ struct MenuView: View {
         //
         VStack(alignment: .leading) {
             
-            //            Button(action: {
-            //                withAnimation {
-            //                    showMenu.toggle()
-            //                }
-            //            }) {
-            //                Image(systemName: "line.horizontal.3")
-            //                    .imageScale(.large)
-            //            }
-            
             HStack {
                 NavigationLink(destination: CustomerView()) {
                     Text("My Customers")
