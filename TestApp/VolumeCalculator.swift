@@ -31,14 +31,14 @@ struct MyRadioButton: View {
     
     var body: some View {
         
-        Button(label , action: {
-            currentlySelectedId = id
-        })
-        .padding(10.0)
+        Button( action:{currentlySelectedId = id}) {
+            Text("\(label)")
+                .frame(width:100)
+        }
+        .padding(10)
         .foregroundColor(id == currentlySelectedId ? .white : .black)
         .background(id == currentlySelectedId ? Color("DarkBlue") : .white)
         .cornerRadius(10)
-        .frame(width: 100)
         .overlay(RoundedRectangle(cornerRadius: 10.0)
                     .stroke(lineWidth: 2.0)
                     .fill(id == currentlySelectedId ? Color("DarkBlue") : .black)
@@ -151,7 +151,7 @@ struct VolumeCalculator: View {
         Background {
             VStack {
                 
-                Text("Knowing how many gallons of water your pool holds allows us to provide accurate does recommendtions.")
+                Text("Knowing how many gallons of water your pool holds allows us to provide accurate does recommendtions. Please select a Pool Type below.")
                     .multilineTextAlignment(.center)
                     .frame(width: 350)
                     .padding()
