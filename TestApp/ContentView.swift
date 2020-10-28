@@ -60,6 +60,8 @@ struct MainView: View {
     
     @Binding var showMenu: Bool
     
+    
+    
     var body: some View {
         ZStack(alignment: .leading){
             NavigationView {
@@ -111,9 +113,9 @@ struct MainView: View {
                     
                     Spacer()
                     
-                                        NavigationLink(destination: TestList()) {
+//                                        NavigationLink(destination: TestList()) {
 //                    NavigationLink(destination: VolumeCalculator()) {
-                        //                    NavigationLink(destination: WaterTestView()) {
+                                            NavigationLink(destination: WaterTestView()) {
                         HStack {
                             Image(systemName: "eyedropper.halffull")
                                 .font(.title)

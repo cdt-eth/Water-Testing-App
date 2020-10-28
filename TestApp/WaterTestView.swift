@@ -81,7 +81,6 @@ struct WaterTestView: View {
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }
         
-        
         VStack(spacing: 0) {
             Text("Free Chlorine").font(.footnote).bold()
             

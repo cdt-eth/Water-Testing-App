@@ -1,6 +1,6 @@
 //
-//  TestList.swift
-//  Water Testing
+//  ProductList.swift
+//  Water Testting
 //
 //  Created by Christian David Turner on 10/28/20.
 //
@@ -75,8 +75,8 @@ extension StringProtocol {
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
 }
 
-struct TestList: View {
-    @State var tests: [Test] = []
+struct ProductList: View {
+    @State var products: [Product] = []
     
     var body: some View {
         
@@ -87,10 +87,10 @@ struct TestList: View {
         
         Divider()
         
-        List(tests){ test in
+        List(products){ product in
             
             
-            let jsonURL = (test.image ?? "https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png")
+            let jsonURL = (product.image ?? "https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png")
             
             VStack{
                 VStack{
@@ -98,33 +98,33 @@ struct TestList: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 100)
                     
-                    Text(test.name)
+                    Text(product.name)
                         .font(.headline)
                         .textCase(.uppercase)
                         .foregroundColor(Color("DarkBlue"))
                         .multilineTextAlignment(.center)
                         .frame(width:250)
                     
-                    Text(test.upc ?? "N/A").font(.callout).italic()
+                    Text(product.upc ?? "N/A").font(.callout).italic()
                 }.padding(.bottom, 15)
                 
                 HStack{
                     VStack(alignment: .leading){
-                        Text(test.category?.firstCapitalized ?? "N/A")
-                        Text(test.sku).foregroundColor(Color.gray)
+                        Text(product.category?.firstCapitalized ?? "N/A")
+                        Text(product.sku).foregroundColor(Color.gray)
                     }
                     Spacer()
                     VStack(alignment: .leading){
-                        Text("sz: \(test.size ?? "N/A")")
-                        Text("ct: \(test.pack_count)" )
+                        Text("sz: \(product.size ?? "N/A")")
+                        Text("ct: \(product.pack_count)" )
                     }
                 }
             }.padding()
             
         }
         .onAppear(){
-            API().getTests { (tests) in
-                self.tests = tests
+            API().getProducts { (products) in
+                self.products = products
             }
                 
         
@@ -133,8 +133,8 @@ struct TestList: View {
 }
 
 
-struct TestList_Previews: PreviewProvider {
+struct ProductList_Previews: PreviewProvider {
     static var previews: some View {
-        TestList()
+        ProductList()
     }
 }

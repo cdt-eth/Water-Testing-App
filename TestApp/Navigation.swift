@@ -37,6 +37,14 @@ struct MenuView: View {
             }.padding(.top, 25)
             
             HStack {
+                NavigationLink(destination: ProductList()) {
+                    Text("Product List")
+                        .font(.headline)
+                        .foregroundColor(Color.black)
+                }
+            }.padding(.top, 25)
+            
+            HStack {
                 NavigationLink(destination: WaterTestView()) {
                     Text("Contact Us")
                         .font(.headline)
