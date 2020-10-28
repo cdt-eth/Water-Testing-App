@@ -9,12 +9,23 @@ import SwiftUI
 
 struct TestList: View {
     @State var tests: [Test] = []
-    
+
     var body: some View {
+
         List(tests){ test in
-//            Text(post.title)
-            Text(test.name)
-        }.onAppear(){
+            HStack{
+                VStack(alignment: .leading){
+                    Text(test.name)
+                    Text(test.sku)
+                }
+                Spacer()
+                VStack(alignment: .trailing){
+                    Text(test.size ?? "")
+                    Text("\(test.pack_count)" )
+                }
+            }.padding()
+        }
+        .onAppear(){
             API().getTests { (tests) in
                 self.tests = tests
             }
