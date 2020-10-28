@@ -10,11 +10,13 @@ import SwiftUI
 struct Test: Codable, Identifiable {
     let id = UUID()
     
-    var sku: String
     var name: String
+    var category: String?
+    var sku: String
+    
     var size: String?
     var pack_count: Int
-//        var upc: Int
+//    var upc: Int
 }
 
 class API {
