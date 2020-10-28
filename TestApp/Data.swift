@@ -7,22 +7,28 @@
 
 import SwiftUI
 
-struct Post: Codable, Identifiable {
+struct Test: Codable, Identifiable {
     let id = UUID()
-    var title: String
-    var body: String
+    //    var title: String
+    //    var body: String
+    //    let id: Int
+//    var sku: String
+    var name: String
+//    var title: String
+//    var description: String
+//    var upc: String
 }
 
 class API {
-    func getTests(completion: @escaping ([Post]) -> ()) {
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else {return}
+    func getTests(completion: @escaping ([Test]) -> ()) {
 //        guard let url = URL(string: "https://www.biolabhydra.com/api/v3/water_tests") else {return}
+        guard let url = URL(string: "https://www.biolabhydra.com/api/v3/products") else {return}
         
         URLSession.shared.dataTask(with: url) { (data, _, _) in
-            let posts = try! JSONDecoder().decode([Post].self, from: data!)
+            let test = try! JSONDecoder().decode([Test].self, from: data!)
             
             DispatchQueue.main.async{
-                completion(posts)
+                completion(test)
             }
         }
         .resume()
