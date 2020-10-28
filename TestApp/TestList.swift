@@ -89,6 +89,7 @@ struct TestList: View {
         
         List(tests){ test in
             
+            
             let jsonURL = (test.image ?? "https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png")
             
             VStack{
@@ -119,14 +120,16 @@ struct TestList: View {
                     }
                 }
             }.padding()
+            
         }
         .onAppear(){
             API().getTests { (tests) in
                 self.tests = tests
             }
+                
+        
         }
     }
-    
 }
 
 

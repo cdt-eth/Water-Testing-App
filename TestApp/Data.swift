@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Test: Codable, Identifiable {
     let id = UUID()
-    
+    var brand: String
     var image: String?
     
     var name: String
