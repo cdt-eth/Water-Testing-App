@@ -111,7 +111,7 @@ struct MainView: View {
                     
                     Spacer()
                     
-                                        NavigationLink(destination: Fields()) {
+                                        NavigationLink(destination: PostList()) {
 //                    NavigationLink(destination: VolumeCalculator()) {
                         //                    NavigationLink(destination: WaterTestView()) {
                         HStack {
