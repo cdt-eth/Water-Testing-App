@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-
-
+// URL of Image -> Image
 struct RemoteImage: View {
     private enum LoadState {
         case loading, success, failure
@@ -69,7 +68,7 @@ struct RemoteImage: View {
     }
 }
 
-
+// Capitalize First letter
 extension StringProtocol {
     var firstUppercased: String { prefix(1).uppercased() + dropFirst() }
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
@@ -88,7 +87,6 @@ struct ProductList: View {
         Divider()
         
         List(products){ product in
-            
             
             let jsonURL = (product.image ?? "https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png")
             
@@ -126,8 +124,6 @@ struct ProductList: View {
             API().getProducts { (products) in
                 self.products = products
             }
-                
-        
         }
     }
 }
