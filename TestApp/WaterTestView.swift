@@ -93,7 +93,7 @@ struct WaterTestView: View {
         print("Fetch")
         
     
-        var semaphore = DispatchSemaphore (value: 0)
+        let semaphore = DispatchSemaphore (value: 0)
 
         let parameters = "{\n\n  \"pool_volume\": 10000,\n\n  \"pool_product_sanitizer\": 652,\n\n  \"readings\": [\n\n    {\n\n      \"analyte\": \"fc\",\n\n      \"value\": 1.6\n\n    },\n\n    {\n\n      \"analyte\": \"ph\",\n\n      \"value\": 8.6\n\n    }\n\n  ],\n\n  \"include_maintenance_recommendations\": true\n\n}"
         let postData = parameters.data(using: .utf8)
