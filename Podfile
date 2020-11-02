@@ -5,7 +5,6 @@ target 'Water Testing' do
 
 
 pod 'FloatingLabelTextFieldSwiftUI'
-pod 'Alamofire', '~> 5.2'
 
 
 
