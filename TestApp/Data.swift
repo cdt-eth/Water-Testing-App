@@ -31,8 +31,8 @@ struct Product: Codable, Identifiable {
 //    var pool_volume: Int
 //}
 
-  
-class API {
+
+//class API {
 //    func getResults(completion: @escaping ([Result]) -> ()) {
 //
 //
@@ -51,16 +51,11 @@ class API {
 //        }
 //        .resume()
 //    }
-
-    let user = "christian.turner@biolabinc.com|8"
-    let password = "E3XdYPnuWghb96d"
-
+class API {
     func getProducts(completion: @escaping ([Product]) -> ()) {
         guard let url = URL(string: "https://www.biolabhydra.com/api/v3/products") else {return}
-
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             let product = try! JSONDecoder().decode([Product].self, from: data!)
-
             DispatchQueue.main.async{
                 completion(product)
             }
