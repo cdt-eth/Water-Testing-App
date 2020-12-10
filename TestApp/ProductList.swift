@@ -118,7 +118,6 @@ struct ProductList: View {
                     }
                 }
             }.padding()
-            
         }
         .onAppear(){
             API().getProducts { (products) in

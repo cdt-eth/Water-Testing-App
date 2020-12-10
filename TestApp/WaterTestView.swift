@@ -8,31 +8,28 @@
 import SwiftUI
 import Foundation
 
-struct Response: Codable {
-    var results: [Result]
+struct Welcome: Decodable, Identifiable {
+    var id: Int?
+    //    var id = UUID()
+    //    var recommendations: [Any?]?
+    var readings: [Reading]?
+    //    var issues: [Any?]?
+    var include_maintenance_recommendations: Bool?
+    //    var testMethod, lsi, scanURL, pool: NSNull?
+    var pool_volume: Int?
+    //    var poolFinish, poolExternalID, poolSystemType, poolProductSanitizer: NSNull?
+    var created_at, updated_at: String?
 }
 
-//struct Result: Codable {
-//    var trackId: Int
-//    var trackName: String
-//    var collectionName: String
-//    var pool_volume: Int
-//    var pool_system_type: String
-//    var title: String
-//}
-
-struct Result: Codable, Identifiable {
-    var id = UUID()
-
-    var recommendations: String?
-    var created_at: String
-    var pool_system_type: String
-    var pool_volume: Int
-    //    var pool_system_type: String
-    var title: String
+// MARK: - Reading
+struct Reading: Decodable {
+    var analyte: String?
+    var value: String?
+    //    var initialValue: NSNull?
 }
 
 
+var results = Welcome()
 
 struct WaterTestView: View {
     @State var sliderValue = 0.0
@@ -69,27 +66,22 @@ struct WaterTestView: View {
     var minST = 0.0
     var maxST = 1000.0
     
-//    @State var results: [Result] = []
+//    @State private var results = [Result]()
     
-    
-        @State private var results = [Result]()
-    
+    @State var res = Welcome()
     var body: some View {
-//        Text("hi").font(.largeTitle).onAppear(perform: loadData)
-        
-//                List(results, id: \.trackId) { result in
-        List(results) { result in
-            VStack(alignment: .leading) {
-                //                Text(result.trackName)
-                //                    .font(.headline)
 
-                //                Text(result.collectionName)
-                Text("hi").font(.largeTitle)
-                Text("title: \(result.title)").font(.largeTitle)
-                Text("pool system type: \(result.pool_system_type)").font(.largeTitle)
+          VStack(alignment: .leading) {
+
+            Text(res.created_at ?? "N/A")
+                .font(.subheadline)
+                .padding()
+            }.onAppear(){
+                fetchResults().getData {(res) in
+                    self.res = res
+                }
             }
-
-        }.onAppear(perform: loadData)
+        
     
         VStack(spacing: 0) {
         
@@ -107,7 +99,8 @@ struct WaterTestView: View {
         
         Text("\(Int(maxTH))")
         }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
-        }.onAppear(perform: loadData)
+//        }.onAppear(perform: loadData)
+        }
         VStack(spacing: 0) {
         Text("Total Chlorine").font(.footnote).bold()
         
@@ -199,46 +192,84 @@ struct WaterTestView: View {
         
     }
     
-    
-    func loadData() {
+}
+
+
+class fetchResults{
+    func getData(completion: @escaping (Welcome) -> ()){
         print("Fetch")
-        let semaphore = DispatchSemaphore (value: 0)
-        let parameters = "{\n\n  \"pool_volume\": 10000,\n\n  \"pool_product_sanitizer\": 652,\n\n  \"readings\": [\n\n    {\n\n      \"analyte\": \"fc\",\n\n      \"value\": 1.6\n\n    },\n\n    {\n\n      \"analyte\": \"ph\",\n\n      \"value\": 8.6\n\n    }\n\n  ],\n\n  \"include_maintenance_recommendations\": true\n\n}"
-        let postData = parameters.data(using: .utf8)
         
+        let parameters = "{  \"pool_volume\": 10000,  \"readings\": [    {      \"analyte\": \"fc\",      \"value\": 1.6    },    {      \"analyte\": \"ph\",      \"value\": 7.3    }  ]}"
+        let postData = parameters.data(using: .utf8)
         var request = URLRequest(url: URL(string: "https://www.biolabhydra.com/api/v3/water_tests")!,timeoutInterval: Double.infinity)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Basic Y2hyaXN0aWFuLnR1cm5lckBiaW9sYWJpbmMuY29tfDg6RTNYZFlQbnVXZ2hiOTZk", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("csrftoken=J7rRhxMbgGc5ugfEj2EtwsDV8qo6ZsE7pCqm3N9hutujQs0JSaSbP8sz5sL762ML", forHTTPHeaderField: "Cookie")
         request.httpMethod = "POST"
         request.httpBody = postData
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else {
-                print(String(describing: error))
-                return
-            }
-//            let results = try! JSONDecoder().decode([Result].self, from: data!)
-//            DispatchQueue.main.async{
-//                completion(results)
-//            }
-            print(String(data: data, encoding: .utf8)!)
-            semaphore.signal()
-        }.resume()
-        semaphore.wait()
-    }
-    
-    func getProducts(completion: @escaping ([Product]) -> ()) {
-        guard let url = URL(string: "https://www.biolabhydra.com/api/v3/products") else {return}
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            let product = try! JSONDecoder().decode([Product].self, from: data!)
-            DispatchQueue.main.async{
-                completion(product)
+        let task = URLSession.shared.dataTask(with: request) { (data, _, _) in
+            let resultList = try! JSONDecoder().decode(Welcome.self, from: data!)
+            print(" ")
+            print("ID: \(resultList.id ?? 111)")
+            print("VOLUME: \(resultList.pool_volume ?? 111)")
+            print("RECOMMENDATIONS: \(resultList.include_maintenance_recommendations ?? true)")
+            print("CREATD AT: \(resultList.created_at ?? "N/A")")
+            print("UPDATED AT: \(resultList.updated_at ?? "N/A")")
+            print("READINGS: \(String(describing: resultList.readings))")
+            print(" ")
+            print("SUCCESS: Got data - \(data! )")
+            
+            DispatchQueue.main.async {
+                completion(resultList)           // << here !!
             }
         }
-        .resume()
+        task.resume()
     }
     
+}
+    
+    
+//    func loadData() {
+//        print("Fetch")
+//        let semaphore = DispatchSemaphore (value: 0)
+//        let parameters = "{\n\n  \"pool_volume\": 10000,\n\n  \"pool_product_sanitizer\": 652,\n\n  \"readings\": [\n\n    {\n\n      \"analyte\": \"fc\",\n\n      \"value\": 1.6\n\n    },\n\n    {\n\n      \"analyte\": \"ph\",\n\n      \"value\": 8.6\n\n    }\n\n  ],\n\n  \"include_maintenance_recommendations\": true\n\n}"
+//        let postData = parameters.data(using: .utf8)
+//
+//        var request = URLRequest(url: URL(string: "https://www.biolabhydra.com/api/v3/water_tests")!,timeoutInterval: Double.infinity)
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue("Basic Y2hyaXN0aWFuLnR1cm5lckBiaW9sYWJpbmMuY29tfDg6RTNYZFlQbnVXZ2hiOTZk", forHTTPHeaderField: "Authorization")
+//        request.addValue("csrftoken=J7rRhxMbgGc5ugfEj2EtwsDV8qo6ZsE7pCqm3N9hutujQs0JSaSbP8sz5sL762ML", forHTTPHeaderField: "Cookie")
+//        request.httpMethod = "POST"
+//        request.httpBody = postData
+//
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            guard let data = data else {
+//                print(String(describing: error))
+//                return
+//            }
+////            let results = try! JSONDecoder().decode([Result].self, from: data!)
+////            DispatchQueue.main.async{
+////                completion(results)
+////            }
+//            print(String(data: data, encoding: .utf8)!)
+//            semaphore.signal()
+//        }.resume()
+//        semaphore.wait()
+//    }
+
+    //    -------  -------  -------  -------  -------  -------  -------  --------------
+//    func getProducts(completion: @escaping ([Product]) -> ()) {
+//        guard let url = URL(string: "https://www.biolabhydra.com/api/v3/products") else {return}
+//        URLSession.shared.dataTask(with: url) { (data, _, _) in
+//            let product = try! JSONDecoder().decode([Product].self, from: data!)
+//            DispatchQueue.main.async{
+//                completion(product)
+//            }
+//        }
+//        .resume()
+//    }
+//    -------  -------  -------  -------  -------  -------  -------  --------------
     //        var body: some View {
     //            Text("hi")
     //
@@ -367,7 +398,7 @@ struct WaterTestView: View {
 //     }  .navigationBarTitle(Text("Pool Water Test"), displayMode:.inline)
 //
 //        }
-}
+//}
 
 //extension URLRequest {
 //    mutating func setBasicAuth(username: String, password: String) {
