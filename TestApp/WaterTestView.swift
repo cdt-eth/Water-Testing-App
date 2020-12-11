@@ -28,7 +28,6 @@ struct Reading: Decodable {
     //    var initialValue: NSNull?
 }
 
-
 //var results = Welcome()
 
 struct WaterTestView: View {
@@ -72,7 +71,6 @@ struct WaterTestView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            
             Text(res.created_at ?? "N/A")
                 .font(.subheadline)
                 .padding()
@@ -82,10 +80,7 @@ struct WaterTestView: View {
             }
         }
         
-        
-        
         VStack(spacing: 0) {
-            
             Text("Total Hardness").font(.footnote).bold()
             if valueTH < 40 || valueTH > 750 {
                 Text("\(Int(valueTH))").font(.title).bold().foregroundColor(Color.red)
@@ -189,12 +184,10 @@ struct WaterTestView: View {
                 Text("\(Int(maxST))")
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }  .navigationBarTitle(Text("Pool Water Test"), displayMode:.inline)
-        
     }
-    
 }
 
-
+// MARK: - Private API Fetch
 class fetchResults{
     func getData(completion: @escaping (Welcome) -> ()){
         print("Fetch")
