@@ -2,7 +2,6 @@
 //  VolumeCalculator.swift
 //  Water Testing
 //
-//  Created by Christian David Turner on 10/26/20.
 //
 
 import SwiftUI
