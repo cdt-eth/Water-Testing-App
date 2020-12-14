@@ -89,9 +89,9 @@ struct MainView: View {
                             NavigationLink(destination: CustomerView()) {
                                 Image(systemName: "person")
                                     .font(.title)
-                                }
-//                            Image(systemName: "person")
-//                                .font(.title)
+                            }
+                            //                            Image(systemName: "person")
+                            //                                .font(.title)
                         }
                     }
                     .padding()
@@ -113,9 +113,9 @@ struct MainView: View {
                     
                     Spacer()
                     
-//                                        NavigationLink(destination: TestList()) {
-//                    NavigationLink(destination: VolumeCalculator()) {
-                                            NavigationLink(destination: WaterTestView()) {
+                    //                                        NavigationLink(destination: TestList()) {
+                    //                    NavigationLink(destination: VolumeCalculator()) {
+                    NavigationLink(destination: WaterTestView()) {
                         HStack {
                             Image(systemName: "eyedropper.halffull")
                                 .font(.title)
