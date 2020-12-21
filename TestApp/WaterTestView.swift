@@ -68,12 +68,15 @@ struct WaterTestView: View {
     // MARK: - Results from Private Fetch
     @State var res = Welcome()
     
+    @State private var isValidTest = true
+    
     var body: some View {
         
+        
         VStack(alignment: .leading) {
-            //            Text(res.created_at ?? "N/A")
-            //                .font(.subheadline)
-            //                .padding()
+                        Text(res.created_at ?? "N/A")
+                            .font(.subheadline)
+                            .padding()
         }.onAppear(){
             fetchResults().getData {(res) in
                 self.res = res
@@ -185,18 +188,26 @@ struct WaterTestView: View {
             }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
         }  .navigationBarTitle(Text("Pool Water Test"), displayMode:.inline)
         
-        
-        Button(action:{}) {
-            Text("Submit")
-                .font(.callout)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .padding()
-        }
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .background(Color("DarkBlue"))
-        .cornerRadius(10)
-        .padding(.horizontal, 50)
+//        VStack{
+//            Toggle(isOn: $isValidTest) {
+//                        Text("Show welcome message")
+//                    }.padding()
+//        }
+//            VStack{
+//                Button(action:{
+//                    print(Int(valueST))
+//                }) {
+//                    Text("Submit")
+//                        .font(.callout)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .padding()
+//                }
+//                .frame(minWidth: 0, maxWidth: .infinity)
+//                .cornerRadius(10)
+//                .padding(.horizontal, 50)
+//                .background(isValidTest ? Color("DarkBlue") : .gray)
+//            }
     }
 }
 
