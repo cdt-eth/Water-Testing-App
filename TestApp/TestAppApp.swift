@@ -6,16 +6,23 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct TestAppApp: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-//            WaterTestView()
         }
     }
 }
+
+
 
 struct TestAppApp_Previews: PreviewProvider {
     static var previews: some View {
