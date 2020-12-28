@@ -1,6 +1,5 @@
 //
 //  ContentView.swift
-//  TestApp
 //
 //  Created by Christian David Turner on 9/23/20.
 //
