@@ -8,29 +8,52 @@
 import SwiftUI
 import Firebase
 
-//func login() {
-//    self.isLoading = true
-//
-//    Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-//         self.isLoading = false
-//
-//             if error != nil {
-//             self.alertMessage = error?.localizedDescription ?? ""
-//             self.showAlert = true
-//         } else {
-//             self.isSuccessful = true
-//
-//                     DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-//                            self.isSuccessful = false
-//                     }
-//         }
-//      }
-//}
+
 
 
 struct Login: View {
+    
+    
+    @State var email: String = ""
+    @State var password: String = ""
+    @State var loading = false
+    @State var error = false
+
+//    @EnvironmentObject var session: SessionStore
+//
+//    func signIn () {
+//        loading = true
+//        error = false
+//        session.signIn(email: email, password: password) { (result, error) in
+//            self.loading = false
+//            if error != nil {
+//                self.error = true
+//            } else {
+//                self.email = ""
+//                self.password = ""
+//            }
+//        }
+//    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+                    TextField($email, placeholder: Text("email address"))
+                    SecureField($password, placeholder: Text("Password"))
+                    if (error) {
+                        Text("ahhh crap")
+                    }
+            
+            Button(action: {
+                Text("Sign in")
+            }) {
+                
+            }
+            
+                    
+//                Button(action: signIn) {
+//                        Text("Sign in")
+//                    }
+                }
     }
     
     
